@@ -107,5 +107,22 @@
                 return $e->getMessage();
             }
         }
+        public function slectOne(){
+            try {
+                $stm = $this-> dbCnx->prepare("SELECT * FROM campers WHERE id=?");
+                $stm -> execute([$this-> id]);
+                return $stm -> fetchAll();
+            } catch (Exception $e) {
+                return $e->getMessage();
+            }
+        }
+        public function update(){
+            try {
+                $stm = $this-> dbCnx -> prepare("UPDATE campers SET nombres = ?, direccion = ?, logros = ?, ser = ?, ingles = ?, review = ?, skills = ?, especialidad = ? WHERE id = ?");
+                $stm -> execute([$this->nombres, $this->direccion, $this->logros, $this->ser, $this->ingles, $this->review, $this->skills, $this->especialidad, $this->id]);
+            } catch (Exception $e) {
+                return $e->getMessage();
+            }
+        }
     }
 ?>
