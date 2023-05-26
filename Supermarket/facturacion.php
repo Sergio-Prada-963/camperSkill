@@ -1,8 +1,12 @@
 <?php
-  require_once("config.php");
+  require_once('config.php');
+
   $data = new Config();
-  $all = $data->obtainAll()
+
+  $all = $data -> obtainAll();
+
 ?>
+
 <!DOCTYPE html>
 <html>
 
@@ -19,7 +23,7 @@
     integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
 
 
-  <link rel="stylesheet" type="text/css" href="css/estudiantes.css">
+  <link rel="stylesheet" type="text/css" href="./css/slyles.css">
 
 </head>
 
@@ -31,7 +35,7 @@
       <div class="perfil">
         <h3 style="margin-bottom: 2rem;">Camper Skills.</h3>
         <img src="images/Diseño sin título.png" alt="" class="imagenPerfil">
-        <h3>Sergio Prada</h3>
+        <h3>Maicol Estrada</h3>
       </div>
       <div class="menus">
         <a href="/Home/home.php" style="display: flex;gap:2px;">
@@ -59,40 +63,31 @@
             <tr>
               <th scope="col">#</th>
               <th scope="col">NOMBRES</th>
-              <th scope="col">DIRECCION</th>
-              <th scope="col">LOGROS</th>
-              <th scope="col">ESPECIALIDAD</th>
-              <th scope="col">SER</th>
-              <th scope="col">INGLES</th>
-              <th scope="col">REVIEW</th>
-              <th scope="col">SKILLS</th>
+              <th scope="col">DESCRIPCION</th>
+              <th scope="col">IMAGEN</th>
               <th scope="col">DETALLE</th>
             </tr>
           </thead>
           <tbody class="" id="tabla">
 
             <!-- ///////Llenado DInamico desde la Base de Datos -->
+
             <?php
-              foreach($all as $key => $value){
+              foreach ($all as $key => $val){
             ?>
             <tr>
-              <td><?php echo $value['id'] ?></td>
-              <td><?php echo $value['nombres'] ?></td>
-              <td><?php echo $value['direccion'] ?></td>
-              <td><?php echo $value['logros'] ?></td>
-              <td><?php echo $value['ser'] ?></td>
-              <td><?php echo $value['ingles'] ?></td>
-              <td><?php echo $value['review'] ?></td>
-              <td><?php echo $value['skills'] ?></td>
-              <td><?php echo $value['especialidad'] ?></td>
-              <td class="row justify-content-center gap-2 col-10"><a class="btn btn-primary" href="borrarEstudiantes.php?id=<?=$value['id']?>&req=delete">BORRAR</a>
-              <a class="btn btn-warning" href="actualizarEstudiantes.php?id=<?=$value['id']?>">Editar</a></td>
+              <td><?php echo $val['id'] ?></td>
+              <td><?php echo $val['categoriaNombre'] ?></td>
+              <td><?php echo $val['descripcion'] ?></td>
+              <td><img class="imagenProd" src="imagenProducto/<?php echo $val['imagen'] ?>" alt="NADA"></td>
+              <td><a class="btn btn-danger" href="borrarFactura.php?id=<?= $val['id'] ?>&req=delete">BORRAR</a></td>
             </tr>
-            <?php } ?>
-       
 
+            <?php
+              }
+            ?>
           </tbody>
-        
+                
         </table>
 
       </div>
@@ -120,89 +115,36 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body" style="background-color: rgb(231, 253, 246);">
-            <form class="col d-flex flex-wrap" action="registrarEstudiantes.php" method="post">
+            <form class="col d-flex flex-wrap" action="registrarFactura.php" method="post">
               <div class="mb-1 col-12">
-                <label for="nombres" class="form-label">Nombres</label>
+                <label for="nombreCategorias" class="form-label">Nombre Categoria: </label>
                 <input 
                   type="text"
-                  id="nombres"
-                  name="nombres"
+                  id="nombreCategorias"
+                  name="nombreCategorias"
                   class="form-control"  
                 />
               </div>
 
               <div class="mb-1 col-12">
-                <label for="direccion" class="form-label">Direccion</label>
+                <label for="descripcion" class="form-label">Descripcion: </label>
                 <input 
                   type="text"
-                  id="direccion"
-                  name="direccion"
+                  id="descripcion"
+                  name="descripcion"
                   class="form-control"  
                 />
               </div>
 
               <div class="mb-1 col-12">
-                <label for="logros" class="form-label">Logros</label>
+                <label for="imagen" class="form-label">Imagen</label>
                 <input 
-                  type="text"
-                  id="logros"
-                  name="logros"
+                  type="file"
+                  id="imagen"
+                  name="imagen"
                   class="form-control"  
                  
                 />
-              </div>
-
-              <div class="mb-1 col-6">
-                <label for="ser" class="form-label">Ser</label>
-                <input 
-                  type="number"
-                  placeholder="Ingrese la nota"
-                  id="ser"
-                  name="ser"
-                  class="form-control"  
-                />
-              </div>
-
-              <div class="mb-1 col-6">
-                <label for="ingles" class="form-label">Ingles</label>
-                <select class="form-select" aria-label="Default select example" name="ingles">
-                  <option selected>Nivel de ingles</option>
-                  <option value="beginner">Beginner</option>
-                  <option value="intermediate">Intermediate</option>
-                  <option value="advance">Advance</option>
-                </select>
-              </div>
-
-              <div class="mb-1 col-6">
-                <label for="review" class="form-label">Review</label>
-                <input 
-                  type="number"
-                  placeholder="Ingrese la nota"
-                  id="review"
-                  name="review"
-                  class="form-control"  
-                />
-              </div>
-
-              <div class="mb-1 col-6">
-                <label for="skills" class="form-label">Skills</label>
-                <input 
-                  type="number"
-                  placeholder="Ingrese la nota"
-                  id="skills"
-                  name="skills"
-                  class="form-control"  
-                />
-              </div>
-
-              <div class="mb-1 col-12">
-                <label for="especialidad" class="form-label">Especialidad</label>
-                <select class="form-select" aria-label="Default select example" name="especialidad">
-                  <option selected>Especialidad</option>
-                  <option value="front-end">Front-End</option>
-                  <option value="back-end">Back-End</option>
-                  <option value="full-stack">Full Stack</option>
-                </select>
               </div>
 
               <div class=" col-12 m-2">

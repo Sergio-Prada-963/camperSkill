@@ -241,6 +241,11 @@ body{
   object-fit: cover;
 }
 
-
+.imagenProd{
+  width: 150px;
+  height: 180px;
+  border-radius: 15px;
+  object-fit: cover;
+}
 
 
