@@ -1,5 +1,5 @@
 <?php
-  require_once('config.php');
+  require_once('./config.php');
 
   $data = new Config();
 
@@ -23,7 +23,7 @@
     integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
 
 
-  <link rel="stylesheet" type="text/css" href="./css/slyles.css">
+  <link rel="stylesheet" type="text/css" href="./css/styles.css">
 
 </head>
 
@@ -34,27 +34,44 @@
 
       <div class="perfil">
         <h3 style="margin-bottom: 2rem;">Camper Skills.</h3>
-        <img src="images/Diseño sin título.png" alt="" class="imagenPerfil">
-        <h3>Maicol Estrada</h3>
+        <img src="https://img.freepik.com/vector-gratis/astronauta-dabbing-cartoon-vector-icon-illustration-concepto-icono-tecnologia-ciencia-aislado-vector-premium-estilo-dibujos-animados-plana_138676-3360.jpg?w=2000" alt="" class="imagenPerfil">
+        <h3>Sergio Prada</h3>
       </div>
       <div class="menus">
-        <a href="/Home/home.php" style="display: flex;gap:2px;">
+        <a href="../index.php" style="display: flex;gap:2px;">
           <i class="bi bi-house-door"> </i>
-          <h3 style="margin: 0px;">Home</h3>
+          <h3 style="margin: 0px;">Categorias</h3>
         </a>
-        <a href="estudiantes.php" style="display: flex;gap:1px;">
+        <a href="#" style="display: flex;gap:1px;">
           <i class="bi bi-people"></i>
-          <h3 style="margin: 0px;font-weight: 800;">Estudiantes</h3>
+          <h3 style="margin: 0px;font-weight: 800;">Clientes</h3>
         </a>
-       
-
-
+        <a href="../empleados/empleados.php" style="display: flex;gap:1px;">
+          <i class="bi bi-people"></i>
+          <h3 style="margin: 0px;font-weight: 800;">Empleados</h3>
+        </a>
+        <a href="../facturas/facturas.php" style="display: flex;gap:1px;">
+          <i class="bi bi-people"></i>
+          <h3 style="margin: 0px;font-weight: 800;">Facturas</h3>
+        </a>
+        <a href="../facturaD/facturaD.php" style="display: flex;gap:1px;">
+          <i class="bi bi-people"></i>
+          <h3 style="margin: 0px;font-weight: 800;">Factura Detalle</h3>
+        </a>
+        <a href="../productos/productos.php" style="display: flex;gap:1px;">
+          <i class="bi bi-people"></i>
+          <h3 style="margin: 0px;font-weight: 800;">Productos</h3>
+        </a>
+        <a href="../proveedores/proveedores.php" style="display: flex;gap:1px;">
+          <i class="bi bi-people"></i>
+          <h3 style="margin: 0px;font-weight: 800;">Proveedores</h3>
+        </a>
       </div>
     </div>
 
     <div class="parte-media">
       <div style="display: flex; justify-content: space-between;">
-        <h2>Estudiantes</h2>
+        <h2>Clientes</h2>
         <button class="btn-m" data-bs-toggle="modal" data-bs-target="#registrarEstudiantes"><i class="bi bi-person-add " style="color: rgb(255, 255, 255);" ></i></button>
       </div>
       <div class="menuTabla contenedor2">
@@ -62,9 +79,9 @@
           <thead>
             <tr>
               <th scope="col">#</th>
-              <th scope="col">NOMBRES</th>
-              <th scope="col">DESCRIPCION</th>
-              <th scope="col">IMAGEN</th>
+              <th scope="col">NOMBRE</th>
+              <th scope="col">CELULAR</th>
+              <th scope="col">COMPAÑIA</th>
               <th scope="col">DETALLE</th>
             </tr>
           </thead>
@@ -76,11 +93,14 @@
               foreach ($all as $key => $val){
             ?>
             <tr>
-              <td><?php echo $val['id'] ?></td>
-              <td><?php echo $val['categoriaNombre'] ?></td>
-              <td><?php echo $val['descripcion'] ?></td>
-              <td><img class="imagenProd" src="imagenProducto/<?php echo $val['imagen'] ?>" alt="NADA"></td>
-              <td><a class="btn btn-danger" href="borrarFactura.php?id=<?= $val['id'] ?>&req=delete">BORRAR</a></td>
+              <td><?= $val['cliente_id'] ?></td>
+              <td><?= $val['nombre'] ?></td>
+              <td><?= $val['celular'] ?></td>
+              <td><?= $val['compania'] ?></td>
+              <td class="row justify-content-center gap-2 col-10">
+                <a class="btn btn-danger" href="./borrarClientes.php?id=<?= $val['cliente_id'] ?>&req=delete">BORRAR</a>
+                <a class="btn btn-primary" href="./actualizarClientes.php?id=<?=$val['cliente_id']?>">Editar</a>
+              </td>
             </tr>
 
             <?php
@@ -102,48 +122,46 @@
 
     </div>
 
-
-
-
-
     <!-- /////////Modal de registro de nuevo estuiante //////////-->
     <div class="modal fade" id="registrarEstudiantes" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="backdrop-filter: blur(5px)">
       <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" >
         <div class="modal-content" >
           <div class="modal-header" >
-            <h1 class="modal-title fs-5" id="exampleModalLabel">Nuevo Estudiante</h1>
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Nuevo Cliente</h1>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body" style="background-color: rgb(231, 253, 246);">
-            <form class="col d-flex flex-wrap" action="registrarFactura.php" method="post">
+            <form class="col d-flex flex-wrap" action="./registrarClientes.php" method="post">
               <div class="mb-1 col-12">
-                <label for="nombreCategorias" class="form-label">Nombre Categoria: </label>
+                <label for="nombre" class="form-label">Nombre Cliente: </label>
                 <input 
                   type="text"
-                  id="nombreCategorias"
-                  name="nombreCategorias"
-                  class="form-control"  
+                  id="nombre"
+                  name="nombre"
+                  class="form-control"
+                  placeholder="Ingrese el nombre del cliente"
                 />
               </div>
 
               <div class="mb-1 col-12">
-                <label for="descripcion" class="form-label">Descripcion: </label>
+                <label for="celular" class="form-label">Celular: </label>
                 <input 
-                  type="text"
-                  id="descripcion"
-                  name="descripcion"
+                  type="number"
+                  id="celular"
+                  name="celular"
                   class="form-control"  
+                  placeholder="Ingrese el # celular"
                 />
               </div>
 
               <div class="mb-1 col-12">
-                <label for="imagen" class="form-label">Imagen</label>
+                <label for="compañia" class="form-label">Compañia: </label>
                 <input 
-                  type="file"
-                  id="imagen"
-                  name="imagen"
+                  type="text"
+                  id="compañia"
+                  name="compania"
                   class="form-control"  
-                 
+                 placeholder="Ingrese el nombre de la compañia"
                 />
               </div>
 

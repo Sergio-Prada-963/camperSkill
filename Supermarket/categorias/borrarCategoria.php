@@ -1,10 +1,4 @@
 <?php
-ini_set("display_errors", 1);
-
-ini_set("display_startup_errors", 1);
-
-error_reporting(E_ALL);
-
     require_once("config.php");
 
     $record = new Config();
@@ -12,7 +6,7 @@ error_reporting(E_ALL);
         if ($_GET['req'] == "delete"){
             $record -> setId($_GET['id']);
             $record -> delete();
-            echo "<script>alert('Dato borrado satisfactoriamente');document.location='facturacion.php'</script>";
+            echo "<script>alert('Dato borrado satisfactoriamente');document.location='../index.php'</script>";
         }
     }
 
