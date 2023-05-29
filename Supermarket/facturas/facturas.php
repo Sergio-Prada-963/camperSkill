@@ -4,7 +4,8 @@
   $data = new Config();
 
   $all = $data -> obtainAll();
-
+  $idempleado = $data->obtenerEmpleadoId();
+  $idcliente = $data->obtenerClienteId();
 ?>
 
 <!DOCTYPE html>
@@ -71,7 +72,7 @@
 
     <div class="parte-media">
       <div style="display: flex; justify-content: space-between;">
-        <h2>Categorias</h2>
+        <h2>Facturas</h2>
         <button class="btn-m" data-bs-toggle="modal" data-bs-target="#registrarEstudiantes"><i class="bi bi-person-add " style="color: rgb(255, 255, 255);" ></i></button>
       </div>
       <div class="menuTabla contenedor2">
@@ -131,25 +132,32 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body" style="background-color: rgb(231, 253, 246);">
-            <form class="col d-flex flex-wrap" action="./registrarFactura.php" method="post">
+            <form class="col d-flex flex-wrap" action="registrarFactura.php" method="post">
               <div class="mb-1 col-12">
-                <label for="empleado_id" class="form-label">Empleado: </label>
-                <input 
-                  type="number"
-                  id="empleado_id"
-                  name="empleado_id"
-                  class="form-control"  
-                />
+              <select class="form-select" aria-label="Default select example" id="empleado_id" name="empleado_id" required>
+                  <option selected>Seleccione el id del Empleados</option>
+                  <?php
+                    foreach($idempleado as $key => $valor){
+                    ?> 
+                  <option value="<?= $valor["empleado_id"]?>"><?= $valor["nombre"]?></option>
+                  <?php
+                    }
+                  ?>
+                </select>
               </div>
 
               <div class="mb-1 col-12">
-                <label for="cliente_id" class="form-label">Cliente: </label>
-                <input 
-                  type="number"
-                  id="cliente_id"
-                  name="cliente_id"
-                  class="form-control"  
-                />
+                <label for="clienteId" class="form-label">Cliente Id</label>
+                <select class="form-select" aria-label="Default select example" id="cliente_id" name="cliente_id" required>
+                  <option selected>Seleccione el id del Cliente</option>
+                  <?php
+                    foreach($idcliente as $key => $valor){
+                    ?> 
+                  <option value="<?= $valor["cliente_id"]?>"><?= $valor["nombre"]?></option>
+                  <?php
+                    }
+                  ?>
+                </select>
               </div>
 
               <div class="mb-1 col-12">
@@ -159,7 +167,7 @@
                   id="fecha"
                   name="fecha"
                   class="form-control"  
-                 placeholder="Ingrese la url de la fecha"
+                 placeholder="Ingrese la fecha"
                 />
               </div>
 

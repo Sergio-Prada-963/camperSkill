@@ -8,7 +8,7 @@
         private $fecha;
         protected $dbCnx;
 
-        public function __construct($factura_id = 0, $empleado_id = '', $cliente_id = '',  $fecha = '' ){
+        public function __construct($factura_id = 0, $empleado_id = 0, $cliente_id = 0,  $fecha = '' ){
             $this->factura_id = $factura_id;
             $this->empleado_id = $empleado_id;
             $this->cliente_id = $cliente_id;
@@ -49,9 +49,51 @@
             return $this->fecha;
         }
 
+        public function obtenerEmpleadoId(){
+            try {
+                $stm = $this-> dbCnx -> prepare("SELECT empleado_id,nombre FROM empleados");
+                $stm -> execute();
+                return $stm -> fetchAll();
+            } catch (Exception $e) {
+                return $e->getMessage();
+            }
+        }
+    
+        public function EmpleadoId(){
+            try {
+                $stm = $this-> dbCnx -> prepare("SELECT empleado_id, nombre FROM empleados WHERE empleado_id=:empleado_id");
+                $stm->bindParam(":empleado_id",$this->empleado_id);
+                $stm -> execute();
+                return $stm -> fetchAll();
+            } catch (Exception $e) {
+                return $e->getMessage();
+            }
+        }
+    
+        public function ClienteId(){
+            try {
+                $stm = $this-> dbCnx -> prepare("SELECT cliente_id, nombre FROM empleados WHERE empleado_id=:empleado_id");
+                $stm->bindParam(":empleado_id",$this->empleado_id);
+                $stm -> execute();
+                return $stm -> fetchAll();
+            } catch (Exception $e) {
+                return $e->getMessage();
+            }
+        }
+    
+        public function obtenerClienteId(){
+            try {
+                $stm = $this-> dbCnx -> prepare("SELECT cliente_id,nombre FROM clientes");
+                $stm -> execute();
+                return $stm -> fetchAll();
+            } catch (Exception $e) {
+                return $e->getMessage();
+            }
+        }
+
         public function insertData() {
             try {
-                $stmt = $this->dbCnx->prepare("INSERT INTO facturas (empleado_id, cliente_id, fecha) VALUES (?, ?, ?, ?)");
+                $stmt = $this->dbCnx->prepare("INSERT INTO facturas (empleado_id, cliente_id, fecha) VALUES (?, ?, ?)");
                 $stmt->execute([$this->empleado_id, $this->cliente_id, $this->fecha]);
             } catch (Exception $e) {
                 return $e->getMessage();
@@ -70,10 +112,10 @@
 
         public function delete(){
             try {
-                $stm = $this -> dbCnx -> prepare("DELETE FROM facturas WHERE facturas_id = ?");
+                $stm = $this -> dbCnx -> prepare("DELETE FROM facturas WHERE factura_id = ?");
                 $stm -> execute([$this->factura_id]);
                 return $stm -> fetchAll();
-                echo "<script>alert('Registro eliminado');document.location='./facturas.php'</script>";
+                echo "<script>alert('Registro eliminado');document.location='facturas.php'</script>";
             } catch (Exception $e) {
                 return $e->getMessage();
             }

@@ -1,5 +1,5 @@
 <?php 
-    require_once("./config.php");
+    require_once("config.php");
     $data = new Config();
     $id = $_GET['id'];
     $data-> setId($id);
