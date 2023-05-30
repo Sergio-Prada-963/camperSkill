@@ -51,8 +51,8 @@
 
         public function insertData() {
             try {
-                $stmt = $this->dbCnx->prepare("INSERT INTO categorias (categoriaNombre, descripcion, imagen) VALUES (?, ?, ?)");
-                $stmt->execute([$this->nombreCategoria, $this->descripcion, $this->imagen]);
+                $stm = $this->dbCnx->prepare("INSERT INTO categorias (categoriaNombre, descripcion, imagen) VALUES (?, ?, ?)");
+                $stm->execute([$this->nombreCategoria, $this->descripcion, $this->imagen]);
             } catch (Exception $e) {
                 return $e->getMessage();
             }

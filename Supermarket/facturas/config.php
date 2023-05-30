@@ -72,8 +72,8 @@
     
         public function ClienteId(){
             try {
-                $stm = $this-> dbCnx -> prepare("SELECT cliente_id, nombre FROM empleados WHERE empleado_id=:empleado_id");
-                $stm->bindParam(":empleado_id",$this->empleado_id);
+                $stm = $this-> dbCnx -> prepare("SELECT cliente_id, nombre FROM clientes WHERE cliente_id=:cliente_id");
+                $stm->bindParam(":cliente_id",$this->cliente_id);
                 $stm -> execute();
                 return $stm -> fetchAll();
             } catch (Exception $e) {
@@ -83,7 +83,7 @@
     
         public function obtenerClienteId(){
             try {
-                $stm = $this-> dbCnx -> prepare("SELECT cliente_id,nombre FROM clientes");
+                $stm = $this-> dbCnx -> prepare("SELECT cliente_id, nombre  FROM clientes");
                 $stm -> execute();
                 return $stm -> fetchAll();
             } catch (Exception $e) {
