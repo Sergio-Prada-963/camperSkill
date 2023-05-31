@@ -1,10 +1,11 @@
 <?php
-  require_once('configs/configCatego.php');
+  require_once('../../configs/configFacturas.php');
 
   $data = new Config();
 
   $all = $data -> obtainAll();
-
+  $idempleado = $data->obtenerEmpleadoId();
+  $idcliente = $data->obtenerClienteId();
 ?>
 
 <!DOCTYPE html>
@@ -23,7 +24,7 @@
     integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
 
 
-  <link rel="stylesheet" type="text/css" href="css/styles.css">
+  <link rel="stylesheet" type="text/css" href="../../css/styles.css">
 
 </head>
 
@@ -38,35 +39,31 @@
         <h3>Sergio Prada</h3>
       </div>
       <div class="menus">
-        <a href="#" style="display: flex;gap:2px;">
+        <a href="../../index.php" style="display: flex;gap:2px;">
           <i class="bi bi-house-door"> </i>
           <h3 style="margin: 0px;">Categorias</h3>
         </a>
-        <a href="modulos/file/clientes.php" style="display: flex;gap:1px;">
+        <a href="./clientes.php" style="display: flex;gap:1px;">
           <i class="bi bi-people"></i>
           <h3 style="margin: 0px;font-weight: 800;">Clientes</h3>
         </a>
-        <a href="modulos/file/empleados.php" style="display: flex;gap:1px;">
+        <a href="./empleados.php" style="display: flex;gap:1px;">
           <i class="bi bi-people"></i>
           <h3 style="margin: 0px;font-weight: 800;">Empleados</h3>
         </a>
-        <a href="modulos/file/facturas.php" style="display: flex;gap:1px;">
+        <a href="./facturas.php" style="display: flex;gap:1px;">
           <i class="bi bi-people"></i>
           <h3 style="margin: 0px;font-weight: 800;">Facturas</h3>
         </a>
-        <a href="modulos/file/clientes.php" style="display: flex;gap:1px;">
-          <i class="bi bi-people"></i>
-          <h3 style="margin: 0px;font-weight: 800;">Clientes</h3>
-        </a>
-        <a href="modulos/file/facturaD.php" style="display: flex;gap:1px;">
+        <a href=".facturaD.php" style="display: flex;gap:1px;">
           <i class="bi bi-people"></i>
           <h3 style="margin: 0px;font-weight: 800;">Factura Detalle</h3>
         </a>
-        <a href="modulos/file/productos.php" style="display: flex;gap:1px;">
+        <a href="./productos.php" style="display: flex;gap:1px;">
           <i class="bi bi-people"></i>
           <h3 style="margin: 0px;font-weight: 800;">Productos</h3>
         </a>
-        <a href="modulos/file/proveedores.php" style="display: flex;gap:1px;">
+        <a href="./proveedores.php" style="display: flex;gap:1px;">
           <i class="bi bi-people"></i>
           <h3 style="margin: 0px;font-weight: 800;">Proveedores</h3>
         </a>
@@ -75,7 +72,7 @@
 
     <div class="parte-media">
       <div style="display: flex; justify-content: space-between;">
-        <h2>Categorias</h2>
+        <h2>Facturas</h2>
         <button class="btn-m" data-bs-toggle="modal" data-bs-target="#registrarEstudiantes"><i class="bi bi-person-add " style="color: rgb(255, 255, 255);" ></i></button>
       </div>
       <div class="menuTabla contenedor2">
@@ -83,9 +80,9 @@
           <thead>
             <tr>
               <th scope="col">#</th>
-              <th scope="col">NOMBRES</th>
-              <th scope="col">DESCRIPCION</th>
-              <th scope="col">IMAGEN</th>
+              <th scope="col">EMPLEADO</th>
+              <th scope="col">CLIENTE</th>
+              <th scope="col">FECHA</th>
               <th scope="col">DETALLE</th>
             </tr>
           </thead>
@@ -97,13 +94,13 @@
               foreach ($all as $key => $val){
             ?>
             <tr>
-              <td><?= $val['categoria_id'] ?></td>
-              <td><?= $val['categoriaNombre'] ?></td>
-              <td><?= $val['descripcion'] ?></td>
-              <td><img class="imagenProd" src="<?php echo $val['imagen'] ?>" alt="NADA"></td>
+              <td><?= $val['factura_id'] ?></td>
+              <td><?= $val['empleado_id'] ?></td>
+              <td><?= $val['cliente_id'] ?></td>
+              <td><?php echo $val['fecha'] ?></td>
               <td class="row justify-content-center gap-2 col-10">
-                <a class="btn btn-danger" href="modulos/actions/categorias/borrarCategoria.php?id=<?= $val['categoria_id'] ?>&req=delete">BORRAR</a>
-                <a class="btn btn-primary" href="modulos/actions/categorias/actualizarCategorias.php?id=<?=$val['categoria_id']?>">Editar</a>
+                <a class="btn btn-danger" href="../actions/facturas/borrarFactura.php?id=<?= $val['factura_id'] ?>&req=delete">BORRAR</a>
+                <a class="btn btn-primary" href="../actions/facturas/actualizarFactura.php?id=<?=$val['factura_id']?>">Editar</a>
               </td>
             </tr>
 
@@ -131,39 +128,46 @@
       <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" >
         <div class="modal-content" >
           <div class="modal-header" >
-            <h1 class="modal-title fs-5" id="exampleModalLabel">Nuevo Estudiante</h1>
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Nueva Factura</h1>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body" style="background-color: rgb(231, 253, 246);">
-            <form class="col d-flex flex-wrap" action="modulos/actions/categorias/registrarCategoria.php" method="post">
+            <form class="col d-flex flex-wrap" action="../actions/facturas/registrarFactura.php" method="post">
               <div class="mb-1 col-12">
-                <label for="nombreCategorias" class="form-label">Nombre Categoria: </label>
-                <input 
-                  type="text"
-                  id="nombreCategorias"
-                  name="nombreCategorias"
-                  class="form-control"  
-                />
+              <select class="form-select" aria-label="Default select example" id="empleado_id" name="empleado_id" required>
+                  <option selected>Seleccione el id del Empleados</option>
+                  <?php
+                    foreach($idempleado as $key => $valor){
+                    ?> 
+                  <option value="<?= $valor["empleado_id"]?>"><?= $valor["nombre"]?></option>
+                  <?php
+                    }
+                  ?>
+                </select>
               </div>
 
               <div class="mb-1 col-12">
-                <label for="descripcion" class="form-label">Descripcion: </label>
-                <input 
-                  type="text"
-                  id="descripcion"
-                  name="descripcion"
-                  class="form-control"  
-                />
+                <label for="clienteId" class="form-label">Cliente Id</label>
+                <select class="form-select" aria-label="Default select example" id="cliente_id" name="cliente_id" required>
+                  <option selected>Seleccione el id del Cliente</option>
+                  <?php
+                    foreach($idcliente as $key => $valor){
+                    ?> 
+                  <option value="<?= $valor["cliente_id"]?>"><?= $valor["nombre"]?></option>
+                  <?php
+                    }
+                  ?>
+                </select>
               </div>
 
               <div class="mb-1 col-12">
-                <label for="imagen" class="form-label">Imagen</label>
+                <label for="fecha" class="form-label">fecha</label>
                 <input 
-                  type="url"
-                  id="imagen"
-                  name="imagen"
+                  type="date"
+                  id="fecha"
+                  name="fecha"
                   class="form-control"  
-                 placeholder="Ingrese la url de la imagen"
+                 placeholder="Ingrese la fecha"
                 />
               </div>
 
