@@ -35,3 +35,29 @@ CREATE TABLE facturas(
     FOREIGN KEY (empleado_id) REFERENCES empleados(empleado_id),
     FOREIGN KEY (cliente_id) REFERENCES clientes(cliente_id)
 );
+
+--Proveedores--------------------
+CREATE TABLE proveedores(
+    proveedores_id INT PRIMARY KEY AUTO_INCREMENT,
+    nombre_proveedores VARCHAR (50) NOT NULL,
+    telefono_proveedores INT(25) NOT NULL,
+    ciudad_proveedores TEXT (20)
+);
+
+--Productos------------------
+CREATE TABLE productos(
+    producto_id INT primary key AUTO_INCREMENT,
+    categoria_id INT (20),
+    precioUnitario INT (100),
+    stock INT (100),
+    unidades_pedidas INT (20),
+    proveedor_id INT (20),
+    nombre_producto TEXT (50),
+    descontinuado BOOLEAN
+);
+
+--factura detalle-------------------------
+CREATE TABLE factura_detalle(
+    factura_detalle_id INT PRIMARY KEY AUTO_INCREMENT,
+    producto_id
+)

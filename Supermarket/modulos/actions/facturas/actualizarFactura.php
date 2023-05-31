@@ -8,10 +8,14 @@
     $val = $record[0];
     print_r($val);
 
+    $all = $data -> obtainAll();
+    $idempleado = $data->obtenerEmpleadoId();
+    $idcliente = $data->obtenerClienteId();
+
     if(isset($_POST['editar'])){
-        $data->setNombreCategoria($_POST['categoriaNombre']);
-        $data->setDescripcion($_POST['descripcion']);
-        $data->setImagen($_POST['imagen']);
+        $data->setEmpleado_id($_POST['empleado_id']);
+        $data->setCliente_id($_POST['cliente_id']);
+        $data->setFecha($_POST['fecha']);
 
         $data->update();
         echo "<script>alert('Datos actualizados satisfactoriamente');document.location='../../file/facturas.php'</script>";
@@ -83,37 +87,43 @@
         <div class="menuTabla contenedor2">
             <form class="col d-flex flex-wrap" action=""  method="post">
                 <div class="mb-1 col-12">
-                    <label for="nombres" class="form-label">Nombres</label>
-                    <input 
-                      type="text"
-                      id="nombres"
-                      name="categoriaNombre"
-                      class="form-control"  
-                      value="<?php echo $val['categoriaNombre'];?>"
-                    />
-                </div>
+                <select class="form-select" aria-label="Default select example" id="empleado_id" name="empleado_id" required>
+                  <option selected>Seleccione el id del Empleados</option>
+                  <?php
+                    foreach($idempleado as $key => $valor){
+                    ?> 
+                  <option value="<?= $valor["empleado_id"]?>"><?= $valor["nombre_empleados"]?></option>
+                  <?php
+                    }
+                  ?>
+                </select>
+              </div>
 
-                <div class="mb-1 col-12">
-                  <label for="descripcion" class="form-label">Descripcion</label>
-                  <input 
-                    type="text"
-                    id="descripcion"
-                    name="descripcion"
-                    class="form-control"  
-                    value="<?php echo $val['descripcion'];?>"
-                  />
-                </div>
+              <div class="mb-1 col-12">
+                <label for="clienteId" class="form-label">Cliente Id</label>
+                <select class="form-select" aria-label="Default select example" id="cliente_id" name="cliente_id" required>
+                  <option selected>Seleccione el id del Cliente</option>
+                  <?php
+                    foreach($idcliente as $key => $valor){
+                    ?> 
+                  <option value="<?= $valor["cliente_id"]?>"><?= $valor["nombre_clientes"]?></option>
+                  <?php
+                    }
+                  ?>
+                </select>
+              </div>
 
-                <div class="mb-1 col-12">
-                  <label for="imagen" class="form-label">Imagen</label>
-                  <input 
-                    type="text"
-                    id="imagen"
-                    name="imagen"
-                    class="form-control"  
-                    value="<?php echo $val['imagen'];?>"
-                  />
-                </div>
+              <div class="mb-1 col-12">
+                <label for="fecha" class="form-label">fecha</label>
+                <input 
+                  type="date"
+                  id="fecha"
+                  name="fecha"
+                  class="form-control"  
+                  placeholder="Ingrese la fecha"
+                  value="<?php echo $val['fecha'];?>"
+                />
+              </div>
 
                 <div class=" col-12 m-2">
                     <input type="submit" class="btn btn-primary" value="UPDATE" name="editar"/>
