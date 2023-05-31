@@ -85,7 +85,6 @@
                 $stm = $this -> dbCnx -> prepare("DELETE FROM empleados WHERE empleado_id = :id");
                 $stm->bindParam(":id",$this->empleado_id);
                 $stm -> execute();
-                echo "<script>alert('Registro eliminado');document.location='../modulos/file/empleados.php'</script>";
                 return $stm -> fetchAll();
             } catch (Exception $e) {
                 return $e->getMessage();

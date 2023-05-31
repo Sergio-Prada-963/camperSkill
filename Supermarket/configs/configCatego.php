@@ -70,7 +70,6 @@
             try {
                 $stm = $this -> dbCnx -> prepare("DELETE FROM categorias WHERE categoria_id = ?");
                 $stm -> execute([$this->categoria_id]);
-                echo "<script>alert('Registro eliminado');document.location='../index.php'</script>";
                 return $stm -> fetchAll();
             } catch (Exception $e) {
                 return $e->getMessage();

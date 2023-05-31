@@ -15,7 +15,7 @@
         $data->setImagen($_POST['imagen']);
 
         $data->update();
-        echo "<script>alert('Datos actualizados satisfactoriamente');document.location='../../files/empleados.php'</script>";
+        echo "<script>alert('Datos actualizados satisfactoriamente');document.location='../../file/empleados.php'</script>";
     }
 ?>
 <!DOCTYPE html>

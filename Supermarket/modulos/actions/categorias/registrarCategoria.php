@@ -1,6 +1,6 @@
 <?php
     if (isset($_POST['guardar'])){
-        require_once('../../../configs/configCatego.phpc');
+        require_once('../../../configs/configCatego.php');
 
         $config = new Config();
 
@@ -11,5 +11,4 @@
         $config -> insertData();
         echo "<script>alert('datos guardados');document.location='../../../index.php'</script>";
     }
-
 ?>
