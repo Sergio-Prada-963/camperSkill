@@ -95,8 +95,8 @@
             ?>
             <tr>
               <td><?= $val['factura_id'] ?></td>
-              <td><?= $val['empleado_id'] ?></td>
-              <td><?= $val['cliente_id'] ?></td>
+              <td><?= $val['nombre_empleados'] ?></td>
+              <td><?= $val['nombre_clientes'] ?></td>
               <td><?php echo $val['fecha'] ?></td>
               <td class="row justify-content-center gap-2 col-10">
                 <a class="btn btn-danger" href="../actions/facturas/borrarFactura.php?id=<?= $val['factura_id'] ?>&req=delete">BORRAR</a>
@@ -139,7 +139,7 @@
                   <?php
                     foreach($idempleado as $key => $valor){
                     ?> 
-                  <option value="<?= $valor["empleado_id"]?>"><?= $valor["nombre"]?></option>
+                  <option value="<?= $valor["empleado_id"]?>"><?= $valor["nombre_empleados"]?></option>
                   <?php
                     }
                   ?>
@@ -153,7 +153,7 @@
                   <?php
                     foreach($idcliente as $key => $valor){
                     ?> 
-                  <option value="<?= $valor["cliente_id"]?>"><?= $valor["nombre"]?></option>
+                  <option value="<?= $valor["cliente_id"]?>"><?= $valor["nombre_clientes"]?></option>
                   <?php
                     }
                   ?>

@@ -3,14 +3,14 @@
 
     class Config extends ConexionPdo{
         private $empleado_id;
-        private $nombre;
+        private $nombre_empleados;
         private $celular;
         private $direccion;
         private $imagen;
 
-        public function __construct($empleado_id = 0, $nombre = '', $celular = 0, $direccion = '', $imagen = ''){
+        public function __construct($empleado_id = 0, $nombre_empleados = '', $celular = 0, $direccion = '', $imagen = ''){
             $this->empleado_id = $empleado_id;
-            $this->nombre = $nombre;
+            $this->nombre_empleados = $nombre_empleados;
             $this->celular = $celular;
             $this->direccion = $direccion;
             $this->imagen = $imagen;
@@ -25,12 +25,12 @@
             return $this->empleado_id;
         }
     
-        public function setNombre($nombre) {
-            $this->nombre = $nombre;
+        public function setNombre_empleados($nombre_empleados) {
+            $this->nombre_empleados = $nombre_empleados;
         }
     
-        public function getNombre() {
-            return $this->nombre;
+        public function getNombre_empleados() {
+            return $this->nombre_empleados;
         }
     
         public function setCelular($celular) {
@@ -59,8 +59,8 @@
 
         public function insertData() {
             try {
-                $stm = $this-> dbCnx -> prepare("INSERT INTO empleados(nombre, celular, direccion, imagen) VALUES (:nombre,:celular,:direccion,:imagen)");
-                $stm->bindParam(":nombre",$this->nombre);
+                $stm = $this-> dbCnx -> prepare("INSERT INTO empleados(nombre_empleados, celular, direccion, imagen) VALUES (:nombre_empleados,:celular,:direccion,:imagen)");
+                $stm->bindParam(":nombre_empleados",$this->nombre_empleados);
                 $stm->bindParam(":celular",$this->celular);
                 $stm->bindParam(":direccion",$this->direccion);
                 $stm->bindParam(":imagen",$this->imagen);
@@ -104,14 +104,14 @@
         }
         public function update(){
             try {
-                $stm = $this-> dbCnx -> prepare("UPDATE empleados SET nombre=:nombre, celular=:celular, direccion=:direccion, imagen=:imagen WHERE empleado_id = :id");
+                $stm = $this-> dbCnx -> prepare("UPDATE empleados SET nombre_empleados=:nombre_empleados, celular=:celular, direccion=:direccion, imagen=:imagen WHERE empleado_id = :id");
             $stm->bindParam(":id",$this->empleado_id);
-            $stm->bindParam(":nombre",$this->nombre);
+            $stm->bindParam(":nombre_empleados",$this->nombre_empleados);
             $stm->bindParam(":celular",$this->celular);
             $stm->bindParam(":direccion",$this->direccion);
             $stm->bindParam(":imagen",$this->imagen);
             $stm -> execute();
-                $stm-> execute([$this->nombre, $this->celular, $this->direccion, $this->imagen, $this->empleado_id]);
+                $stm-> execute([$this->nombre_empleados, $this->celular, $this->direccion, $this->imagen, $this->empleado_id]);
             } catch (Exception $e) {
                 return $e->getMessage();
             }

@@ -4,7 +4,7 @@
 
         $config = new Config();
 
-        $config -> setNombre($_POST['nombre']);
+        $config -> setNombre_clientes($_POST['nombre_clientes']);
         $config -> setCelular($_POST['celular']);
         $config -> setCompania($_POST['compania']);
 

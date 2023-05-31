@@ -95,7 +95,7 @@
             ?>
             <tr>
               <td><?= $val['empleado_id'] ?></td>
-              <td><?= $val['nombre'] ?></td>
+              <td><?= $val['nombre_empleados'] ?></td>
               <td><?= $val['celular'] ?></td>
               <td><?= $val['direccion'] ?></td>
               <td><img class="imagenProd" src="<?php echo $val['imagen'] ?>" alt="NADA"></td>
@@ -139,7 +139,7 @@
                 <input 
                   type="text"
                   id="nombre"
-                  name="nombre"
+                  name="nombre_empleados"
                   class="form-control"  
                 />
               </div>

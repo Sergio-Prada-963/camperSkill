@@ -9,7 +9,7 @@
     print_r($val);
 
     if(isset($_POST['editar'])){
-        $data->setNombre($_POST['nombre']);
+        $data->setNombre_clientes($_POST['nombre_clientes']);
         $data->setCelular($_POST['celular']);
         $data->setCompania($_POST['compania']);
 
@@ -87,9 +87,9 @@
                     <input 
                       type="text"
                       id="nombre"
-                      name="nombre"
+                      name="nombre_clientes"
                       class="form-control"  
-                      value="<?php echo $val['nombre'];?>"
+                      value="<?php echo $val['nombre_clientes'];?>"
                     />
                 </div>
 

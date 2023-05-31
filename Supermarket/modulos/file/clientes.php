@@ -94,7 +94,7 @@
             ?>
             <tr>
               <td><?= $val['cliente_id'] ?></td>
-              <td><?= $val['nombre'] ?></td>
+              <td><?= $val['nombre_clientes'] ?></td>
               <td><?= $val['celular'] ?></td>
               <td><?= $val['compania'] ?></td>
               <td class="row justify-content-center gap-2 col-10">
@@ -137,7 +137,7 @@
                 <input 
                   type="text"
                   id="nombre"
-                  name="nombre"
+                  name="nombre_clientes"
                   class="form-control"
                   placeholder="Ingrese el nombre del cliente"
                 />

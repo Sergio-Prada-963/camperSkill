@@ -49,7 +49,7 @@
 
         public function obtenerEmpleadoId(){
             try {
-                $stm = $this-> dbCnx -> prepare("SELECT empleado_id,nombre FROM empleados");
+                $stm = $this-> dbCnx -> prepare("SELECT empleado_id,nombre_empleados FROM empleados");
                 $stm -> execute();
                 return $stm -> fetchAll();
             } catch (Exception $e) {
@@ -59,7 +59,7 @@
     
         public function EmpleadoId(){
             try {
-                $stm = $this-> dbCnx -> prepare("SELECT empleado_id, nombre FROM empleados WHERE empleado_id=:empleado_id");
+                $stm = $this-> dbCnx -> prepare("SELECT empleado_id, nombre_empleados FROM empleados WHERE empleado_id=:empleado_id");
                 $stm->bindParam(":empleado_id",$this->empleado_id);
                 $stm -> execute();
                 return $stm -> fetchAll();
@@ -70,7 +70,7 @@
     
         public function ClienteId(){
             try {
-                $stm = $this-> dbCnx -> prepare("SELECT cliente_id, nombre FROM clientes WHERE cliente_id=:cliente_id");
+                $stm = $this-> dbCnx -> prepare("SELECT cliente_id, nombre_clientes FROM clientes WHERE cliente_id=:cliente_id");
                 $stm->bindParam(":cliente_id",$this->cliente_id);
                 $stm -> execute();
                 return $stm -> fetchAll();
@@ -81,7 +81,7 @@
     
         public function obtenerClienteId(){
             try {
-                $stm = $this-> dbCnx -> prepare("SELECT cliente_id, nombre  FROM clientes");
+                $stm = $this-> dbCnx -> prepare("SELECT cliente_id, nombre_clientes  FROM clientes");
                 $stm -> execute();
                 return $stm -> fetchAll();
             } catch (Exception $e) {

@@ -9,7 +9,7 @@
     print_r($val);
 
     if(isset($_POST['editar'])){
-        $data->setNombre($_POST['nombre']);
+        $data->setNombre_empleados($_POST['nombre_empleados']);
         $data->setCelular($_POST['celular']);
         $data->setDireccion($_POST['direccion']);
         $data->setImagen($_POST['imagen']);
@@ -88,10 +88,10 @@
                     <input 
                       type="text"
                       id="nombre"
-                      name="nombre"
+                      name="nombre_empleados"
                       class="form-control"  
-                      placeholder="Ingrese el nombre"
-                      value="<?php echo $val['nombre'];?>"
+                      placeholder="Ingrese el nombre_empleados"
+                      value="<?php echo $val['nombre_empleados'];?>"
                     />
                 </div>
 

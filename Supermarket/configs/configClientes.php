@@ -3,13 +3,13 @@
 
     class Config extends ConexionPdo{
         private $cliente_id;
-        private $nombre;
+        private $nombre_clientes;
         private $celular;
         private $compania;
 
-        public function __construct($cliente_id = 0, $nombre = '', $celular = 0, $compania = ''){
+        public function __construct($cliente_id = 0, $nombre_clientes = '', $celular = 0, $compania = ''){
             $this->cliente_id = $cliente_id;
-            $this->nombre = $nombre;
+            $this->nombre_clientes = $nombre_clientes;
             $this->celular = $celular;
             $this->compania = $compania;
             parent::__construct();
@@ -23,12 +23,12 @@
             return $this->cliente_id;
         }
     
-        public function setNombre($nombre) {
-            $this->nombre = $nombre;
+        public function setNombre_clientes($nombre_clientes) {
+            $this->nombre_clientes = $nombre_clientes;
         }
     
-        public function getNombre() {
-            return $this->nombre;
+        public function getNombre_clientes() {
+            return $this->nombre_clientes;
         }
     
         public function setCelular($celular) {
@@ -49,8 +49,8 @@
 
         public function insertData() {
             try {
-                $stm = $this->dbCnx->prepare("INSERT INTO clientes (nombre, celular, compania) VALUES (:nombre, :celular, :compania)");
-                $stm->bindParam(":nombre",$this->nombre);
+                $stm = $this->dbCnx->prepare("INSERT INTO clientes (nombre_clientes, celular, compania) VALUES (:nombre_clientes, :celular, :compania)");
+                $stm->bindParam(":nombre_clientes",$this->nombre_clientes);
                 $stm->bindParam(":celular",$this->celular);
                 $stm->bindParam(":compania",$this->compania);
                 $stm->execute();
@@ -93,9 +93,9 @@
         }
         public function update(){
             try {
-                $stm = $this->dbCnx->prepare("UPDATE clientes SET nombre=:nombre, celular=:celular, compania=:compania WHERE cliente_id=:id");
+                $stm = $this->dbCnx->prepare("UPDATE clientes SET nombre_clientes=:nombre_clientes, celular=:celular, compania=:compania WHERE cliente_id=:id");
                 $stm->bindParam(":id",$this->cliente_id);
-                $stm->bindParam(":nombre",$this->nombre);
+                $stm->bindParam(":nombre_clientes",$this->nombre_clientes);
                 $stm->bindParam(":celular",$this->celular);
                 $stm->bindParam(":compania",$this->compania);
                 $stm-> execute();
