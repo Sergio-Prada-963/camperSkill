@@ -59,5 +59,7 @@ CREATE TABLE productos(
 --factura detalle-------------------------
 CREATE TABLE factura_detalle(
     factura_detalle_id INT PRIMARY KEY AUTO_INCREMENT,
-    producto_id
-)
+    producto_id INT (20),
+    cantidad INT (20),
+    precio_venta INT (100)
+);
