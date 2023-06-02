@@ -55,6 +55,8 @@ CREATE TABLE productos(
     nombre_producto TEXT (50),
     descontinuado BOOLEAN
 );
+ALTER TABLE `productos` ADD FOREIGN KEY (`categoria_id`) REFERENCES `categorias`(`categoria_id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+ALTER TABLE `productos` ADD FOREIGN KEY (`proveedor_id`) REFERENCES `proveedores`(`proveedores_id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 --factura detalle-------------------------
 CREATE TABLE factura_detalle(
@@ -63,3 +65,14 @@ CREATE TABLE factura_detalle(
     cantidad INT (20),
     precio_venta INT (100)
 );
+ALTER TABLE `factura_detalle` ADD FOREIGN KEY (`producto_id`) REFERENCES `productos`(`producto_id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+--Users login-----------------
+CREATE TABLE users(
+    user_id INT PRIMARY KEY AUTO_INCREMENT,
+    empleado_id INT (20),
+    email_user VARCHAR (80) NOT NULL,
+    username VARCHAR (80) NOT NULL,
+    password VARCHAR (80)  NOT NULL
+);
+ALTER TABLE `users` ADD FOREIGN KEY (`empleado_id`) REFERENCES `empleados`(`empleado_id`) ON DELETE RESTRICT ON UPDATE RESTRICT;

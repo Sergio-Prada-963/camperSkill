@@ -38,7 +38,7 @@
         <h3>Sergio Prada</h3>
       </div>
       <div class="menus">
-        <a href="../../index.php" style="display: flex;gap:2px;">
+        <a href="./categorias.php" style="display: flex;gap:2px;">
           <i class="bi bi-house-door"> </i>
           <h3 style="margin: 0px;">Categorias</h3>
         </a>

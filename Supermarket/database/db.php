@@ -11,11 +11,11 @@
     }
 
     if (!defined("DB_USER")){
-        define("DB_USER", "campus");
+        define("DB_USER", "root");
     }
 
     if (!defined("DB_PWD")){
-        define("DB_PWD", "campus2023");
+        define("DB_PWD", "");
     }
 
 ?>

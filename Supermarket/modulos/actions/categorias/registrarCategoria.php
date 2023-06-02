@@ -9,6 +9,6 @@
         $config -> setImagen($_POST['imagen']);
 
         $config -> insertData();
-        echo "<script>alert('datos guardados');document.location='../../../index.php'</script>";
+        echo "<script>alert('datos guardados');document.location='../../file/categorias.php'</script>";
     }
 ?>

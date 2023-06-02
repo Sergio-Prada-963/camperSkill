@@ -14,7 +14,7 @@
         $data->setImagen($_POST['imagen']);
 
         $data->update();
-        echo "<script>alert('Datos actualizados satisfactoriamente');document.location='../../../index.php'</script>";
+        echo "<script>alert('Datos actualizados satisfactoriamente');document.location='../../file/categorias.php'</script>";
     }
 ?>
 <!DOCTYPE html>
@@ -47,7 +47,7 @@
         <h3>Sergio Prada</h3>
       </div>
       <div class="menus">
-        <a href="../../../index.php" style="display: flex;gap:2px;">
+        <a href="../../file/categorias.php" style="display: flex;gap:2px;">
           <i class="bi bi-house-door"> </i>
           <h3 style="margin: 0px;">Categorias</h3>
         </a>
