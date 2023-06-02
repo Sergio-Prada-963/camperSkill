@@ -65,15 +65,14 @@ error_reporting(E_ALL);
 
     public function login(){
         try {
-            $stm = $this->dbCnx->prepare("SELECT * FROM users WHERE email_user = ?, username = ? AND password = ?");
-            $stm -> execute([$this->email_user, $this->username, MD5($this->password)]);
+            $stm = $this->dbCnx->prepare("SELECT * FROM users WHERE email_user = ? AND password = ?");
+            $stm -> execute([$this->email_user, MD5($this->password)]);
             $user = $stm->fetchAll();
             if(count($user)>0){
                 session_start();
-                $_SESSION['user_id'] = $user[0]['id'];
+                $_SESSION['user_id'] = $user[0]['user_id'];
                 $_SESSION['email_user'] = $user[0]['email_user'];
                 $_SESSION['password'] = $user[0]['password'];
-                $_SESSION['username'] = $user[0]['username'];
                 return true;
             }else{
                 false;

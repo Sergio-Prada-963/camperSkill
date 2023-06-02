@@ -102,8 +102,8 @@
               <td><?= $val['descripcion'] ?></td>
               <td><img class="imagenProd" src="<?php echo $val['imagen'] ?>" alt="NADA"></td>
               <td class="row justify-content-center gap-2 col-10">
-                <a class="btn btn-danger" href="modulos/actions/categorias/borrarCategoria.php?id=<?= $val['categoria_id'] ?>&req=delete">BORRAR</a>
-                <a class="btn btn-primary" href="modulos/actions/categorias/actualizarCategorias.php?id=<?=$val['categoria_id']?>">Editar</a>
+                <a class="btn btn-danger" href="../../modulos/actions/categorias/borrarCategoria.php?id=<?= $val['categoria_id'] ?>&req=delete">BORRAR</a>
+                <a class="btn btn-primary" href="../../modulos/actions/categorias/actualizarCategorias.php?id=<?=$val['categoria_id']?>">Editar</a>
               </td>
             </tr>
 

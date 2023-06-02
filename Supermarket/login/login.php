@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="logito.png">
+    <link rel="shortcut icon" href="https://png.pngtree.com/element_pic/20/16/02/1756c47bf7a9398.jpg">
     <title>🤠Facturacion</title>
     <link rel="stylesheet" href="../css/login.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
@@ -22,13 +22,6 @@
                 <label>Contraseña...</label>
             </div>
             <div class="caja_login-input">
-                <!-- <a id="iniciar" type="submit" name="loguearse">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    Iniciar Secion
-                </a> -->
                 <input type="submit" value="Iniciar Secion" name="loguearse">
                 <a id="registrar" type="button" data-bs-toggle="modal" data-bs-target="#registrarNew">Registrar</a>
             </div>
@@ -46,7 +39,7 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <form id="formulario1" class="row g-2" action="registrar.php" method="POST">
+                            <form id="formulario1" class="row g-2" action="registrar.php" method="post">
                                 <div class="caja_login-input">
                                     <input id="usuario" type="email" name="email_user" required />
                                     <label>Email...</label>
@@ -73,6 +66,5 @@
     
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
-    <script src="../js/login.js" type="module"></script>
 </body>
 </html>
