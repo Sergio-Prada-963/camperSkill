@@ -1,4 +1,9 @@
 <?php 
+ini_set("display_errors", 1);
+
+ini_set("display_startup_errors", 1);
+
+error_reporting(E_ALL);
     require_once("../../../configs/configProductos.php");
     $data = new Config();
     $id = $_GET['id'];
@@ -8,17 +13,21 @@
     $val = $record[0];
     print_r($val);
 
+    $all = $data -> obtainAll();
+    $idCategoria= $data->obtenerCategoria_id();
+    $idProveedor= $data->obtenerProveedor_id();
+
     if(isset($_POST['editar'])){
-        $data->setCategoria_id($_POST['categoriaNombre']);
-        $data->setPrecioUnitario($_POST['descripcion']);
-        $data->setStock($_POST['imagen']);
-        $data->setUnidades_pedidas($_POST['imagen']);
-        $data->setProveedor_id($_POST['imagen']);
-        $data->setNombre_producto($_POST['imagen']);
-        $data->setDescontinuado($_POST['imagen']);
+        $data->setCategoria_id($_POST['categoria_id']);
+        $data->setPrecioUnitario($_POST['precioUnitario']);
+        $data->setStock($_POST['stock']);
+        $data->setUnidades_pedidas($_POST['unidades_pedidas']);
+        $data->setProveedor_id($_POST['proveedores_id']);
+        $data->setNombre_producto($_POST['nombre_producto']);
+        $data->setDescontinuado($_POST['descontinuado']);
 
         $data->update();
-        echo "<script>alert('Datos actualizados satisfactoriamente');document.location='../../file/categorias.php'</script>";
+        echo "<script>alert('Datos actualizados satisfactoriamente');document.location='../../file/productos.php'</script>";
     }
 ?>
 <!DOCTYPE html>
@@ -86,13 +95,14 @@
       </div>
     </div>
     <div class="parte-media">
-        <h2 class="m-2">categoria a Editar</h2>
+        <h2 class="m-2">Producto a Editar</h2>
         <div class="menuTabla contenedor2">
             <form class="col d-flex flex-wrap" action=""  method="post">
-            <select class="form-select" aria-label="Default select example" id="categoria_id" name="categoria_id" required>
+                <label for="categoria_id" class="form-label">Seleccione la Categoria: </label>
+                <select class="form-select" aria-label="Default select example" id="categoria_id" name="categoria_id" required>
                   <option selected>Seleccione la categoria</option>
                   <?php
-                    foreach($categoria_id as $key => $valor){
+                    foreach($idCategoria as $key => $valor){
                     ?> 
                   <option value="<?= $valor["categoria_id"]?>"><?= $valor["categoriaNombre"]?></option>
                   <?php
@@ -107,37 +117,40 @@
                   id="precioUnitario"
                   name="precioUnitario"
                   class="form-control"  
+                  value="<?php echo $val['precioUnitario'];?>"
                 />
               </div>
 
               <div class="mb-1 col-12">
-                <label for="stock" class="form-label">Cantidad en Stock</label>
+                <label for="stock" class="form-label">Cantidad en Stock: </label>
                 <input 
                   type="number"
                   id="stock"
                   name="stock"
                   class="form-control"  
                  placeholder="Ingrese la cantidad de productos en stock"
+                 value="<?php echo $val['stock'];?>"
                 />
               </div>
 
               <div class="mb-1 col-12">
-                <label for="unidaes_pedidas" class="form-label">Unidades Pedidas</label>
+                <label for="unidades_pedidas" class="form-label">Unidades Pedidas: </label>
                 <input 
                   type="number"
-                  id="unidaes_pedidas"
-                  name="unidaes_pedidas"
+                  id="unidades_pedidas"
+                  name="unidades_pedidas"
                   class="form-control"  
                  placeholder="Ingrese la cantidad de unidaes pedidas"
+                 value="<?php echo $val['unidades_pedidas'];?>"
                 />
               </div>
-
-                <select class="form-select" aria-label="Default select example" id="proveedor_id" name="proveedor_id" required>
+                <label for="proveedor_id" class="form-label">Seleccione el proveedor: </label>
+                <select class="form-select" aria-label="Default select example" id="proveedores_id" name="proveedores_id" required>
                   <option selected>Seleccione el Proveedor</option>
                   <?php
-                    foreach($proveedor_id as $key => $valor){
+                    foreach($idProveedor as $key => $valor){
                     ?> 
-                  <option value="<?= $valor["proveedor_id"]?>"><?= $valor["nombre_proveedores"]?></option>
+                  <option value="<?= $valor["proveedores_id"]?>"><?= $valor["nombre_proveedores"]?></option>
                   <?php
                     }
                   ?>
@@ -146,20 +159,25 @@
                 <div class="mb-1 col-12">
                     <label for="nombre_producto" class="form-label">Nombre del Producto: </label>
                     <input 
-                      type="number"
+                      type="text"
                       id="nombre_producto"
                       name="nombre_producto"
                       class="form-control"  
                      placeholder="Ingrese el nombre del producto"
+                     value="<?php echo $val['nombre_producto'];?>"
                     />
                 </div>
 
                 <div class="mb-1 col-12">
+                    <label for="decontinuado" class="form-label">Seleccione el estado</label>
                     <select class="form-select" aria-label="Default select example" id="descontinuado" name="descontinuado" required>
-                        <option selected>ingrese si esta disponible</option>
+                        <option selected>ingrese si esta disponible: </option>
                         <option value="1">DISPONIBLE</option>
                         <option value="0">DESCONTINUADO</option>
                     </select>
+                </div>
+                <div class=" col-12 m-2">
+                    <input type="submit" class="btn btn-primary" value="UPDATE" name="editar"/>
                 </div>
             </form>  
             <div id="charts1" class="charts"> </div>

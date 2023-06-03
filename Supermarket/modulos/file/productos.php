@@ -1,9 +1,12 @@
 <?php
+
   require_once('../../configs/configProductos.php');
 
   $data = new Config();
 
   $all = $data -> obtainAll();
+  $idCategoria= $data->obtenerCategoria_id();
+  $idProveedor= $data->obtenerProveedor_id();
 
 ?>
 
@@ -97,13 +100,14 @@
               foreach ($all as $key => $val){
             ?>
             <tr>
-              <td><?= $val['categoria_id'] ?></td>
+              <td><?= $val['producto_id'] ?></td>
+              <td><?= $val['categoriaNombre'] ?></td>
               <td><?= $val['precioUnitario'] ?></td>
               <td><?= $val['stock'] ?></td>
               <td><?= $val['unidades_pedidas'] ?></td>
-              <td><?= $val['proveedor_id'] ?></td>
+              <td><?= $val['nombre_proveedores'] ?></td>
               <td><?= $val['nombre_producto'] ?></td>
-              <td><?= $val['descontinuado'] ?></td>
+              <td><?php $val['descontinuado'];if($val == 0){echo "DISPONIBLE";}else{echo "DESCONTINUADO";}; ?></td>
               <td class="row justify-content-center gap-2 col-10">
                 <a class="btn btn-danger" href="../../modulos/actions/productos/borrarProducto.php?id=<?= $val['producto_id'] ?>&req=delete">BORRAR</a>
                 <a class="btn btn-primary" href="../../modulos/actions/productos/actualizarProducto.php?id=<?=$val['producto_id']?>">Editar</a>
@@ -143,7 +147,7 @@
                 <select class="form-select" aria-label="Default select example" id="categoria_id" name="categoria_id" required>
                   <option selected>Seleccione la categoria</option>
                   <?php
-                    foreach($categoria_id as $key => $valor){
+                    foreach($idCategoria as $key => $valor){
                     ?> 
                   <option value="<?= $valor["categoria_id"]?>"><?= $valor["categoriaNombre"]?></option>
                   <?php
@@ -152,7 +156,7 @@
                 </select>
 
               <div class="mb-1 col-12">
-                <label for="precioUnitario" class="form-label">Presio unitario:  </label>
+                <label for="precioUnitario" class="form-label">Precio unitario:  </label>
                 <input 
                   type="number"
                   id="precioUnitario"
@@ -173,22 +177,22 @@
               </div>
 
               <div class="mb-1 col-12">
-                <label for="unidaes_pedidas" class="form-label">Unidades Pedidas</label>
+                <label for="unidades_pedidas" class="form-label">Unidades Pedidas</label>
                 <input 
                   type="number"
-                  id="unidaes_pedidas"
-                  name="unidaes_pedidas"
+                  id="unidades_pedidas"
+                  name="unidades_pedidas"
                   class="form-control"  
                  placeholder="Ingrese la cantidad de unidaes pedidas"
                 />
               </div>
 
-                <select class="form-select" aria-label="Default select example" id="proveedor_id" name="proveedor_id" required>
+                <select class="form-select" aria-label="Default select example" id="proveedores_id" name="proveedores_id" required>
                   <option selected>Seleccione el Proveedor</option>
                   <?php
-                    foreach($proveedor_id as $key => $valor){
+                    foreach($idProveedor as $key => $valor){
                     ?> 
-                  <option value="<?= $valor["proveedor_id"]?>"><?= $valor["nombre_proveedores"]?></option>
+                  <option value="<?= $valor["proveedores_id"]?>"><?= $valor["nombre_proveedores"]?></option>
                   <?php
                     }
                   ?>
@@ -197,7 +201,7 @@
                 <div class="mb-1 col-12">
                     <label for="nombre_producto" class="form-label">Nombre del Producto: </label>
                     <input 
-                      type="number"
+                      type="text"
                       id="nombre_producto"
                       name="nombre_producto"
                       class="form-control"  
