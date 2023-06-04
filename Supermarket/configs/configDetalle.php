@@ -47,6 +47,27 @@
             return $this->precio_venta;
         }
 
+        public function obtenerProducto_id(){
+            try {
+                $stm = $this-> dbCnx -> prepare("SELECT producto_id,nombre_producto FROM productos");
+                $stm -> execute();
+                return $stm -> fetchAll();
+            } catch (Exception $e) {
+                return $e->getMessage();
+            }
+        }
+
+        public function producto_id(){
+            try {
+                $stm = $this-> dbCnx -> prepare("SELECT producto_id, nombre_producto FROM productos WHERE producto_id=:producto_id");
+                $stm->bindParam(":producto_id",$this->producto_id);
+                $stm -> execute();
+                return $stm -> fetchAll();
+            } catch (Exception $e) {
+                return $e->getMessage();
+            }
+        }
+
         public function insertData() {
             try {
                 $stm = $this->dbCnx->prepare("INSERT INTO factura_detalle (factura_detalle_id, cantidad, precio_venta) VALUES (:factura_detalle_id, :cantidad, :precio_venta)");
@@ -61,7 +82,7 @@
 
         public function obtainAll(){
             try {
-                $stm = $this -> dbCnx -> prepare("SELECT * FROM clientes");
+                $stm = $this -> dbCnx -> prepare("SELECT * FROM factura_detalle INNER JOIN productos ON factura_detalle.producto_id = productos.producto_id");
                 $stm -> execute();
                 return $stm -> fetchAll();
             } catch (Exception $e) {
@@ -71,8 +92,8 @@
 
         public function delete(){
             try {
-                $stm = $this -> dbCnx -> prepare("DELETE FROM clientes WHERE cliente_id = :id");
-                $stm->bindParam(":id",$this->cliente_id);
+                $stm = $this -> dbCnx -> prepare("DELETE FROM factura_detalle WHERE factura_detalle_id = :id");
+                $stm->bindParam(":id",$this->factura_detalle_id);
                 $stm -> execute();
                 return $stm -> fetchAll();
             } catch (Exception $e) {
@@ -82,8 +103,8 @@
 
         public function selectOne(){
             try {
-                $stm = $this->dbCnx->prepare("SELECT * FROM clientes WHERE cliente_id=:id");
-                $stm->bindParam(":id",$this->cliente_id);
+                $stm = $this->dbCnx->prepare("SELECT * FROM factura_detalle WHERE factura_detalle_id=:id");
+                $stm->bindParam(":id",$this->factura_detalle_id);
                 $stm -> execute();
                 return $stm-> fetchAll();
             } catch (Exception $e) {
@@ -92,9 +113,9 @@
         }
         public function update(){
             try {
-                $stm = $this->dbCnx->prepare("UPDATE clientes SET factura_detalle_id=:factura_detalle_id, cantidad=:cantidad, precio_venta=:precio_venta WHERE cliente_id=:id");
-                $stm->bindParam(":id",$this->cliente_id);
-                $stm->bindParam(":factura_detalle_id",$this->factura_detalle_id);
+                $stm = $this->dbCnx->prepare("UPDATE factura_detalle SET producto_id=:producto_id, cantidad=:cantidad, precio_venta=:precio_venta WHERE factura_detalle_id=:id");
+                $stm->bindParam(":id",$this->factura_detalle_id);
+                $stm->bindParam(":producto_id",$this->producto_id);
                 $stm->bindParam(":cantidad",$this->cantidad);
                 $stm->bindParam(":precio_venta",$this->precio_venta);
                 $stm-> execute();

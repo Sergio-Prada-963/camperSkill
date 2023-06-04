@@ -32,7 +32,7 @@ CREATE TABLE `categorias` (
   `categoriaNombre` varchar(50) NOT NULL,
   `descripcion` varchar(50) DEFAULT NULL,
   `imagen` varchar(1000) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+);
 
 --
 -- Dumping data for table `categorias`
@@ -52,7 +52,7 @@ CREATE TABLE `clientes` (
   `nombre_clientes` varchar(50) NOT NULL,
   `celular` int DEFAULT NULL,
   `compania` tinytext
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+);
 
 --
 -- Dumping data for table `clientes`
@@ -73,7 +73,7 @@ CREATE TABLE `empleados` (
   `celular` int DEFAULT NULL,
   `direccion` tinytext,
   `imagen` varchar(1000) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+);
 
 --
 -- Dumping data for table `empleados`
@@ -93,7 +93,7 @@ CREATE TABLE `facturas` (
   `empleado_id` int DEFAULT NULL,
   `cliente_id` int DEFAULT NULL,
   `fecha` text
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+);
 
 -- --------------------------------------------------------
 
@@ -106,7 +106,7 @@ CREATE TABLE `factura_detalle` (
   `producto_id` int DEFAULT NULL,
   `cantidad` int DEFAULT NULL,
   `precio_venta` int DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+);
 
 -- --------------------------------------------------------
 
@@ -121,9 +121,9 @@ CREATE TABLE `productos` (
   `stock` int DEFAULT NULL,
   `unidades_pedidas` int DEFAULT NULL,
   `proveedores_id` int DEFAULT NULL,
-  `nombre_producto` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci,
+  `nombre_producto` text NOT NULL,
   `descontinuado` tinyint(1) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+);
 
 --
 -- Dumping data for table `productos`
@@ -143,7 +143,7 @@ CREATE TABLE `proveedores` (
   `nombre_proveedores` varchar(50) NOT NULL,
   `telefono_proveedores` int NOT NULL,
   `ciudad_proveedores` tinytext
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+);
 
 --
 -- Dumping data for table `proveedores`
@@ -164,7 +164,7 @@ CREATE TABLE `users` (
   `email_user` varchar(80) NOT NULL,
   `username` varchar(80) NOT NULL,
   `password` varchar(80) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+);
 
 --
 -- Indexes for dumped tables

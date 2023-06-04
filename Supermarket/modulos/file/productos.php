@@ -109,8 +109,8 @@
               <td><?= $val['nombre_producto'] ?></td>
               <td><?php $val['descontinuado'];if($val == 0){echo "DISPONIBLE";}else{echo "DESCONTINUADO";}; ?></td>
               <td class="row justify-content-center gap-2 col-10">
-                <a class="btn btn-danger" href="../../modulos/actions/productos/borrarProducto.php?id=<?= $val['producto_id'] ?>&req=delete">BORRAR</a>
-                <a class="btn btn-primary" href="../../modulos/actions/productos/actualizarProducto.php?id=<?=$val['producto_id']?>">Editar</a>
+                <a class="btn btn-danger" href="../actions/productos/borrarProducto.php?id=<?= $val['producto_id'] ?>&req=delete">BORRAR</a>
+                <a class="btn btn-primary" href="../actions/productos/actualizarProducto.php?id=<?=$val['producto_id']?>">Editar</a>
               </td>
             </tr>
 

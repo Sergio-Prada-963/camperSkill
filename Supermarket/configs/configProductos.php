@@ -105,9 +105,20 @@ error_reporting(E_ALL);
 
         public function categoria_id(){
             try {
-                $stm=$this->dbCnx_>prepare("SELECT categoria_id, categoriaNombre FROM categorias WHERE categoria_id=:categoria_id");
+                $stm=$this->dbCnx->prepare("SELECT categoria_id, categoriaNombre FROM categorias WHERE categoria_id=:categoria_id");
                 $stm->bindParam(":categoria_id",$this->categoria_id);
                 return $stm->fetchAll();
+            } catch (Exception $e) {
+                return $e->getMessage();
+            }
+        }
+        
+        public function proveedor_id(){
+            try {
+                $stm = $this->dbCnx->prepare("SELECT proveedores_id, nombre_proveedores FROM proveedores WHERE proveedores_id=:proveedores_id");
+                $stm->bindParam(":proveedores_id",$this->proveedores_id);
+                $stm->execute();
+                return $stm ->fetchAll();
             } catch (Exception $e) {
                 return $e->getMessage();
             }
@@ -123,16 +134,6 @@ error_reporting(E_ALL);
             }
         }
 
-        public function proveedor_id(){
-            try {
-                $stm = $this->dbCnx->prepare("SELECT proveedores_id, nombre_proveedores FROM proveedores WHERE proveedores_id=:proveedores_id");
-                $stm->bindParam(":proveedores_id",$this->proveedores_id);
-                $stm->execute();
-                return $stm ->fetchAll();
-            } catch (Exception $e) {
-                return $e->getMessage();
-            }
-        }
 
         public function insertData() {
             try {
@@ -184,7 +185,7 @@ error_reporting(E_ALL);
 
         /* public function update(){
             try {
-                $stm = $this->dbCnx->prepare("UPDATE productos SET categoria_id=:categoria_id, precioUnitario=:precioUnitario, stock=:stock, unidades_pedidas=:unidades_pedidas, proveedores_id=:proveedores_id, nombre_producto=nombre_producto:, descontinuado=:descontinuado WHERE producto_id=:id");
+                $stm=$this->dbCnx->prepare("UPDATE productos SET categoria_id=:categoria_id, precioUnitario=:precioUnitario, stock=:stock, unidades_pedidas=:unidades_pedidas, proveedores_id=:proveedores_id, nombre_producto=:nombre_producto, descontinuado=:descontinuado WHERE producto_id=:id");
                 $stm->bindParam(":id",$this->producto_id);
                 $stm->bindParam(":categoria_id",$this->categoria_id);
                 $stm->bindParam(":precioUnitario",$this->precioUnitario);
@@ -201,15 +202,15 @@ error_reporting(E_ALL);
         } */
         public function update(){
             try {
-                $stm=$this->dbCnx->prepare("UPDATE productos SET categoria_id=:categoria_id, precioUnitario=:precioUnitario, stock=:stock, unidades_pedidas=:unidades_pedidas, proveedor_id=:proveedor_id, nombre_producto=:nombre_producto, descontinuado=:descontinuado WHERE producto_id=:producto_id");
+                $stm = $this->dbCnx->prepare("UPDATE productos SET categoria_id=:categoria_id, precioUnitario=:precioUnitario, stock=:stock, unidades_pedidas=:unidades_pedidas, proveedores_id=:proveedores_id, nombre_producto=:nombre_producto, descontinuado=:descontinuado WHERE producto_id=:id");
+                $stm->bindParam(":id", $this->producto_id);
                 $stm->bindParam(":categoria_id", $this->categoria_id); 
                 $stm->bindParam(":precioUnitario", $this->precioUnitario); 
                 $stm->bindParam(":stock", $this->stock); 
                 $stm->bindParam(":unidades_pedidas", $this->unidades_pedidas); 
-                $stm->bindParam(":proveedor_id", $this->proveedor_id); 
+                $stm->bindParam(":proveedores_id", $this->proveedores_id); 
                 $stm->bindParam(":nombre_producto", $this->nombre_producto); 
                 $stm->bindParam(":descontinuado", $this->descontinuado);
-                $stm->bindParam(":producto_id", $this->producto_id);
                 $stm-> execute();
                 return $stm->fetchAll();
             } catch (Exception $e) {

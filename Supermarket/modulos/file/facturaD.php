@@ -4,6 +4,7 @@
   $data = new Config();
 
   $all = $data -> obtainAll();
+  $idProducto = $data-> obtenerProducto_id();
 
 ?>
 
@@ -75,7 +76,7 @@
 
     <div class="parte-media">
       <div style="display: flex; justify-content: space-between;">
-        <h2>Categorias</h2>
+        <h2>Factura Detalle</h2>
         <button class="btn-m" data-bs-toggle="modal" data-bs-target="#registrarEstudiantes"><i class="bi bi-person-add " style="color: rgb(255, 255, 255);" ></i></button>
       </div>
       <div class="menuTabla contenedor2">
@@ -84,7 +85,6 @@
             <tr>
               <th scope="col">#</th>
               <th scope="col">PRODUCTO</th>
-              <th scope="col">NOMBRE</th>
               <th scope="col">CANTIDAD</th>
               <th scope="col">PRECIO VENTA</th>
               <th scope="col">DETALLE</th>
@@ -100,7 +100,6 @@
             <tr>
               <td><?= $val['factura_detalle_id'] ?></td>
               <td><?= $val['nombre_producto'] ?></td>
-              <td><?= $val['precioUnitario'] ?></td>
               <td><?= $val['cantidad'] ?></td>
               <td><?= $val['precio_venta'] ?></td>
               <td class="row justify-content-center gap-2 col-10">

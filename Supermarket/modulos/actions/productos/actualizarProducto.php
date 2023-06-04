@@ -9,9 +9,8 @@ error_reporting(E_ALL);
     $id = $_GET['id'];
     $data-> setId($id);
     $record = $data->selectOne();
-    print_r($record);
     $val = $record[0];
-    print_r($val);
+
 
     $all = $data -> obtainAll();
     $idCategoria= $data->obtenerCategoria_id();
@@ -27,6 +26,7 @@ error_reporting(E_ALL);
         $data->setDescontinuado($_POST['descontinuado']);
 
         $data->update();
+        var_dump($data);
         echo "<script>alert('Datos actualizados satisfactoriamente');document.location='../../file/productos.php'</script>";
     }
 ?>
