@@ -9,10 +9,7 @@
         $config -> setFecha($_POST['fecha']);
 
         $config -> insertData();
-        print_r($config);
-        echo $_POST['empleado_id'];
-        echo $_POST['cliente_id'];
-        echo $_POST['fecha'];
+
         echo "<script>alert('datos guardados');document.location='../../file/facturas.php'</script>";
     }
 

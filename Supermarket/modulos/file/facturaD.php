@@ -87,6 +87,7 @@
               <th scope="col">PRODUCTO</th>
               <th scope="col">CANTIDAD</th>
               <th scope="col">PRECIO VENTA</th>
+              <th scope="col">TOTAL</th>
               <th scope="col">DETALLE</th>
             </tr>
           </thead>
@@ -102,9 +103,10 @@
               <td><?= $val['nombre_producto'] ?></td>
               <td><?= $val['cantidad'] ?></td>
               <td><?= $val['precio_venta'] ?></td>
+              <td><?= $total = $val['precio_venta']*$val['cantidad']; ?></td>
               <td class="row justify-content-center gap-2 col-10">
-                <a class="btn btn-danger" href="../../modulos/actions/detalle/borrarDetalle.php?id=<?= $val['factura_detalle_id'] ?>&req=delete">BORRAR</a>
-                <a class="btn btn-primary" href="../../modulos/actions/detalle/actualizarDetalle.php?id=<?=$val['factura_detalle_id']?>">Editar</a>
+                <a class="btn btn-danger" href="../actions/detalle/borrarDetalle.php?id=<?= $val['factura_detalle_id'] ?>&req=delete">BORRAR</a>
+                <a class="btn btn-primary" href="../actions/detalle/actualizarDetalle.php?id=<?=$val['factura_detalle_id']?>">Editar</a>
               </td>
             </tr>
 
@@ -137,34 +139,35 @@
           </div>
           <div class="modal-body" style="background-color: rgb(231, 253, 246);">
             <form class="col d-flex flex-wrap" action="../actions/detalle/registrarDetalle.php" method="post">
+              <select class="form-select" aria-label="Default select example" id="producto_id" name="producto_id" required>
+                <option selected>Seleccione el id del Empleados</option>
+                <?php
+                  foreach($idProducto as $key => $valor){
+                  ?> 
+                <option value="<?= $valor["producto_id"]?>"><?= $valor["nombre_producto"]?></option>
+                <?php
+                  }
+                ?>
+              </select>
+
               <div class="mb-1 col-12">
-                <label for="nombreDetalle" class="form-label">Nombre Categoria: </label>
+                <label for="cantidad" class="form-label">Cantidad: </label>
                 <input 
-                  type="text"
-                  id="nombreDetalle"
-                  name="nombreDetalle"
+                  type="number"
+                  id="cantidad"
+                  name="cantidad"
                   class="form-control"  
                 />
               </div>
 
               <div class="mb-1 col-12">
-                <label for="descripcion" class="form-label">Descripcion: </label>
+                <label for="precio_venta" class="form-label">Precio Venta</label>
                 <input 
-                  type="text"
-                  id="descripcion"
-                  name="descripcion"
+                  type="number"
+                  id="precio_venta"
+                  name="precio_venta"
                   class="form-control"  
-                />
-              </div>
-
-              <div class="mb-1 col-12">
-                <label for="imagen" class="form-label">Imagen</label>
-                <input 
-                  type="url"
-                  id="imagen"
-                  name="imagen"
-                  class="form-control"  
-                 placeholder="Ingrese la url de la imagen"
+                  placeholder="Ingrese el precio de Venta"
                 />
               </div>
 

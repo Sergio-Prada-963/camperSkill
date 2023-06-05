@@ -70,8 +70,8 @@
 
         public function insertData() {
             try {
-                $stm = $this->dbCnx->prepare("INSERT INTO factura_detalle (factura_detalle_id, cantidad, precio_venta) VALUES (:factura_detalle_id, :cantidad, :precio_venta)");
-                $stm->bindParam(":factura_detalle_id",$this->factura_detalle_id);
+                $stm = $this->dbCnx->prepare("INSERT INTO factura_detalle (producto_id, cantidad, precio_venta) VALUES (:producto_id, :cantidad, :precio_venta)");
+                $stm->bindParam(":producto_id",$this->producto_id);
                 $stm->bindParam(":cantidad",$this->cantidad);
                 $stm->bindParam(":precio_venta",$this->precio_venta);
                 $stm->execute();
