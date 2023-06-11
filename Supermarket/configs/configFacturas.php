@@ -116,7 +116,6 @@
                 $stm = $this -> dbCnx -> prepare("DELETE FROM facturas WHERE factura_id = :id");
                 $stm ->bindParam(":id",$this->factura_id);
                 $stm -> execute();
-                echo "<script>alert('Registro eliminado');document.location='../modulos/file/facturas.php'</script>";
                 return $stm -> fetchAll();
             } catch (Exception $e) {
                 return $e->getMessage();
